@@ -190,10 +190,18 @@
   * ================= */
 
   $(document).on('click.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
-    var $this = $(this), href
-      , $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
-      , options = $.extend({}, $target.data(), $this.data())
-      , slideIndex
+    var $this = $(this)
+    var href  = $this.attr('href')
+
+    if (href) {
+      href = href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+    }
+
+    var target = $this.attr('data-target') || href
+    var $target = $(document).find(target)
+
+    var options = $.extend({}, $target.data(), $this.data()),
+        slideIndex
 
     $target.carousel(options)
 
