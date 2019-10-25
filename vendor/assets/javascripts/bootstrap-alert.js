@@ -42,7 +42,7 @@
     }
 
     selector = selector === '#' ? [] : selector
-    $parent = $(selector)
+    $parent = $(document).find(selector)
 
     e && e.preventDefault()
 
